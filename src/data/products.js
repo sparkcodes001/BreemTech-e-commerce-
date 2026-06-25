@@ -1,0 +1,312 @@
+export const products = [
+  // MOBILES
+  {
+    id: 1,
+    name: "Samsung Galaxy S24 Ultra",
+    category: "mobile",
+    brand: "Samsung",
+    price: 1299,
+    oldPrice: 1499,
+    rating: 4.9,
+    reviews: 234,
+    stock: 15,
+    isNew: true,
+    isFeatured: true,
+    discount: 13,
+    colors: ["#1a1a1a", "#6b7280", "#854d0e"],
+    image:
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&auto=format",
+      "https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=600&auto=format",
+    ],
+    description:
+      "The ultimate smartphone experience with AI-powered camera, titanium build, and S Pen.",
+    specs: {
+      display: "6.8-inch Dynamic AMOLED 2X",
+      processor: "Snapdragon 8 Gen 3",
+      ram: "12GB",
+      storage: "256GB",
+      battery: "5000mAh",
+      camera: "200MP + 12MP + 10MP + 10MP",
+    },
+  },
+  {
+    id: 2,
+    name: "iPhone 15 Pro Max",
+    category: "mobile",
+    brand: "Apple",
+    price: 1199,
+    oldPrice: 1299,
+    rating: 4.8,
+    reviews: 512,
+    stock: 8,
+    isNew: true,
+    isFeatured: true,
+    discount: 8,
+    colors: ["#1a1a1a", "#d4c5a9", "#4a5568"],
+    image:
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format",
+    ],
+    description:
+      "Titanium design, A17 Pro chip, and the most advanced iPhone camera system ever.",
+    specs: {
+      display: "6.7-inch Super Retina XDR",
+      processor: "A17 Pro",
+      ram: "8GB",
+      storage: "256GB",
+      battery: "4422mAh",
+      camera: "48MP + 12MP + 12MP",
+    },
+  },
+  {
+    id: 3,
+    name: "Google Pixel 8 Pro",
+    category: "mobile",
+    brand: "Google",
+    price: 999,
+    oldPrice: 1099,
+    rating: 4.7,
+    reviews: 189,
+    stock: 20,
+    isNew: false,
+    isFeatured: true,
+    discount: 9,
+    colors: ["#1a1a1a", "#6b9e9e", "#d4a5a5"],
+    image:
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&auto=format",
+    ],
+    description:
+      "Google AI at its best. The smartest phone camera on the planet.",
+    specs: {
+      display: "6.7-inch LTPO OLED",
+      processor: "Google Tensor G3",
+      ram: "12GB",
+      storage: "128GB",
+      battery: "5050mAh",
+      camera: "50MP + 48MP + 48MP",
+    },
+  },
+  {
+    id: 4,
+    name: "Samsung Galaxy A55",
+    category: "mobile",
+    brand: "Samsung",
+    price: 449,
+    oldPrice: 499,
+    rating: 4.5,
+    reviews: 321,
+    stock: 30,
+    isNew: false,
+    isFeatured: false,
+    discount: 10,
+    colors: ["#1a1a1a", "#3b82f6", "#a855f7"],
+    image:
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=600&auto=format",
+    ],
+    description:
+      "Premium mid-range experience with stunning display and long battery life.",
+    specs: {
+      display: "6.6-inch Super AMOLED",
+      processor: "Exynos 1480",
+      ram: "8GB",
+      storage: "128GB",
+      battery: "5000mAh",
+      camera: "50MP + 12MP + 5MP",
+    },
+  },
+  {
+    id: 5,
+    name: "OnePlus 12",
+    category: "mobile",
+    brand: "OnePlus",
+    price: 799,
+    oldPrice: 899,
+    rating: 4.6,
+    reviews: 145,
+    stock: 12,
+    isNew: true,
+    isFeatured: false,
+    discount: 11,
+    colors: ["#1a1a1a", "#065f46"],
+    image:
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600&auto=format",
+    ],
+    description:
+      "Flagship killer with Hasselblad cameras and 100W fast charging.",
+    specs: {
+      display: "6.82-inch LTPO AMOLED",
+      processor: "Snapdragon 8 Gen 3",
+      ram: "12GB",
+      storage: "256GB",
+      battery: "5400mAh",
+      camera: "50MP + 48MP + 64MP",
+    },
+  },
+
+  // PCs & LAPTOPS
+  {
+    id: 6,
+    name: "MacBook Pro 16 M3 Max",
+    category: "pc",
+    brand: "Apple",
+    price: 2499,
+    oldPrice: 2799,
+    rating: 4.9,
+    reviews: 423,
+    stock: 5,
+    isNew: true,
+    isFeatured: true,
+    discount: 11,
+    colors: ["#1a1a1a", "#d4c5a9"],
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format",
+    ],
+    description:
+      "The most powerful MacBook ever with M3 Max chip for professionals.",
+    specs: {
+      display: "16.2-inch Liquid Retina XDR",
+      processor: "Apple M3 Max",
+      ram: "36GB",
+      storage: "1TB SSD",
+      battery: "22 hours",
+      gpu: "40-core GPU",
+    },
+  },
+  {
+    id: 7,
+    name: "Dell XPS 15",
+    category: "pc",
+    brand: "Dell",
+    price: 1799,
+    oldPrice: 1999,
+    rating: 4.7,
+    reviews: 267,
+    stock: 10,
+    isNew: false,
+    isFeatured: true,
+    discount: 10,
+    colors: ["#d4c5a9", "#1a1a1a"],
+    image:
+      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&auto=format",
+    ],
+    description:
+      "Premium Windows laptop with stunning OLED display and RTX graphics.",
+    specs: {
+      display: "15.6-inch OLED 3.5K",
+      processor: "Intel Core i9-13900H",
+      ram: "32GB DDR5",
+      storage: "1TB NVMe SSD",
+      battery: "13 hours",
+      gpu: "NVIDIA RTX 4070",
+    },
+  },
+  {
+    id: 8,
+    name: "ASUS ROG Strix G16",
+    category: "pc",
+    brand: "ASUS",
+    price: 1599,
+    oldPrice: 1799,
+    rating: 4.8,
+    reviews: 198,
+    stock: 7,
+    isNew: true,
+    isFeatured: true,
+    discount: 11,
+    colors: ["#1a1a1a", "#6b21a8"],
+    image:
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format",
+    ],
+    description:
+      "Ultimate gaming laptop with 240Hz display and RTX 4080 graphics.",
+    specs: {
+      display: "16-inch QHD 240Hz",
+      processor: "Intel Core i9-14900HX",
+      ram: "32GB DDR5",
+      storage: "2TB NVMe SSD",
+      battery: "90Wh",
+      gpu: "NVIDIA RTX 4080",
+    },
+  },
+  {
+    id: 9,
+    name: "Lenovo ThinkPad X1 Carbon",
+    category: "pc",
+    brand: "Lenovo",
+    price: 1399,
+    oldPrice: 1599,
+    rating: 4.6,
+    reviews: 312,
+    stock: 14,
+    isNew: false,
+    isFeatured: false,
+    discount: 13,
+    colors: ["#1a1a1a"],
+    image:
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format",
+    ],
+    description:
+      "Business ultrabook with military-grade durability and all-day battery.",
+    specs: {
+      display: "14-inch IPS Anti-glare",
+      processor: "Intel Core i7-1365U",
+      ram: "16GB LPDDR5",
+      storage: "512GB SSD",
+      battery: "15 hours",
+      gpu: "Intel Iris Xe",
+    },
+  },
+  {
+    id: 10,
+    name: "HP Spectre x360 14",
+    category: "pc",
+    brand: "HP",
+    price: 1299,
+    oldPrice: 1499,
+    rating: 4.5,
+    reviews: 176,
+    stock: 9,
+    isNew: false,
+    isFeatured: false,
+    discount: 13,
+    colors: ["#1a1a1a", "#d4c5a9"],
+    image:
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format",
+    images: [
+      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format",
+    ],
+    description:
+      "2-in-1 convertible laptop with OLED display and Intel Evo platform.",
+    specs: {
+      display: "13.5-inch 3K2K OLED Touch",
+      processor: "Intel Core Ultra 7",
+      ram: "16GB LPDDR5",
+      storage: "1TB SSD",
+      battery: "17 hours",
+      gpu: "Intel Arc",
+    },
+  },
+];
+
+export const getFeatured = () => products.filter((p) => p.isFeatured);
+export const getByCategory = (cat) =>
+  products.filter((p) => p.category === cat);
+export const getNew = () => products.filter((p) => p.isNew);
+export const getById = (id) => products.find((p) => p.id === Number(id));
