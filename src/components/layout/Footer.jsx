@@ -22,12 +22,12 @@ const Footer = () => {
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 0.3,
+        stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
           trigger: footerRef.current,
-          start: "top 90%",
+          start: "top 95%",
         },
       },
     );

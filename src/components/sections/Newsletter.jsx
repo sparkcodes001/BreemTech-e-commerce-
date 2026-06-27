@@ -25,26 +25,26 @@ const Newsletter = () => {
     tl.fromTo(
       leftRef.current,
       { x: -60, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
+      { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
     )
       .fromTo(
         rightRef.current,
         { x: 60, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
+        { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
         "-=0.7",
       )
       .fromTo(
         ".perk-item",
-        { y: 30, opacity: 0, scale: 0.9 },
+        { y: 30, opacity: 0, scale: 0.5 },
         {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 0.6,
+          duration: 0.3,
           stagger: 0.1,
           ease: "back.out(1.5)",
         },
-        "-=0.5",
+        "-=0.4",
       );
   }, []);
 
