@@ -147,7 +147,7 @@ const CategoryCard = ({ cat, index }) => {  // ✅ Remove span prop - no longer 
         ease: "power3.out",
         scrollTrigger: {
           trigger: cardRef.current,
-          start: "top 85%",
+          start: "top 95%",
         },
       },
     );
