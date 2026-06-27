@@ -5,7 +5,6 @@ import { ShoppingCart, Heart, Eye, Check } from "lucide-react";
 import useCartStore from "../../store/cartStore";
 import useWishlistStore from "../../store/wishlistStore";
 
-// ✅ Check if mobile once — no ScrollTrigger on mobile at all
 const isMobile = window.innerWidth < 1024;
 
 const ProductCard = ({ product, index }) => {
@@ -16,8 +15,10 @@ const ProductCard = ({ product, index }) => {
   const cartItems = useCartStore((state) => state.items);
   const addToWishlist = useWishlistStore((state) => state.addItem);
   const removeFromWishlist = useWishlistStore((state) => state.removeItem);
+
+  // ✅ Reactive boolean — re-renders when wishlist changes
   const isInWishlist = useWishlistStore((state) =>
-    state.isInWishlist(product.id),
+    state.items.some((item) => item.id === product.id),
   );
 
   const isInCart = cartItems.some((item) => item.id === product.id);
@@ -26,13 +27,11 @@ const ProductCard = ({ product, index }) => {
     const el = cardRef.current;
     if (!el) return;
 
-    // ✅ On mobile: no animation, just show cards immediately
     if (isMobile) {
       gsap.set(el, { opacity: 1, y: 0 });
       return;
     }
 
-    // ✅ Desktop only: fast IntersectionObserver animation
     gsap.set(el, { opacity: 0, y: 25 });
 
     const observer = new IntersectionObserver(
@@ -41,14 +40,14 @@ const ProductCard = ({ product, index }) => {
           gsap.to(el, {
             opacity: 1,
             y: 0,
-            duration: 0.35, // ✅ fast
-            delay: (index % 4) * 0.05, // ✅ max delay is only 0.15s (caps at 4 cols)
+            duration: 0.35,
+            delay: (index % 4) * 0.05,
             ease: "power2.out",
           });
           observer.disconnect();
         }
       },
-      { threshold: 0.05 }, // ✅ fires immediately when just 5% visible
+      { threshold: 0.05 },
     );
 
     observer.observe(el);
@@ -57,6 +56,7 @@ const ProductCard = ({ product, index }) => {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!isInCart) addToCart(product, 1);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 2000);
@@ -64,6 +64,7 @@ const ProductCard = ({ product, index }) => {
 
   const handleWishlistToggle = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (isInWishlist) {
       removeFromWishlist(product.id);
     } else {
@@ -119,53 +120,64 @@ const ProductCard = ({ product, index }) => {
           )}
         </div>
 
-        {/* Wishlist */}
+        {/* ✅ Wishlist button — top right, always visible, reactive color */}
         <button
           onClick={handleWishlistToggle}
           className={`absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5
-            w-6 h-6 sm:w-8 sm:h-8 rounded-full
+            w-6 h-6 sm:w-8 sm:h-8 rounded-full z-10
             backdrop-blur-md border flex items-center justify-center
-            transition-all duration-300 active:scale-95
+            transition-all duration-300 active:scale-95 hover:scale-110
             ${
               isInWishlist
                 ? "bg-red-500/20 border-red-500/50 text-red-400"
-                : "bg-dark/60 border-white/10 text-white/50 hover:text-red-400"
+                : "bg-dark/60 border-white/10 text-white/50 hover:bg-red-500/10 hover:border-red-400/40 hover:text-red-400"
             }`}
         >
           <Heart
             size={10}
-            className={`sm:w-[13px] sm:h-[13px] ${isInWishlist ? "fill-red-400" : ""}`}
+            className={`sm:w-[13px] sm:h-[13px] transition-all duration-300
+              ${isInWishlist ? "fill-red-400 text-red-400" : ""}`}
           />
         </button>
 
-        {/* Hover overlay — desktop only */}
+        {/* ✅ Quick action buttons — bottom of image on hover, NO overlap */}
         <div
-          className="absolute inset-0 bg-dark/50 opacity-0
-          group-hover:opacity-100 transition-all duration-300
-          hidden sm:flex items-center justify-center gap-2"
+          className="absolute bottom-0 left-0 right-0
+          flex items-center justify-center gap-2 p-2
+          translate-y-full group-hover:translate-y-0
+          transition-transform duration-300 ease-out
+          hidden sm:flex"
         >
+          {/* View button */}
           <Link
             to={`/products/${product.id}`}
-            className="w-9 h-9 rounded-lg bg-light text-dark
-              flex items-center justify-center hover:bg-accent
-              transition-all duration-200
-              translate-y-3 group-hover:translate-y-0"
+            onClick={(e) => e.stopPropagation()}
+            className="w-8 h-8 rounded-lg
+              bg-dark/80 backdrop-blur-sm border border-white/10
+              text-white flex items-center justify-center
+              hover:bg-accent hover:border-accent hover:text-dark
+              transition-all duration-200"
           >
-            <Eye size={15} />
+            <Eye size={14} />
           </Link>
+
+          {/* Add to cart button */}
           <button
             onClick={handleAddToCart}
             disabled={isInCart && !justAdded}
-            className={`w-9 h-9 rounded-lg flex items-center justify-center
+            className={`w-8 h-8 rounded-lg
+              backdrop-blur-sm border flex items-center justify-center
               transition-all duration-200
-              translate-y-3 group-hover:translate-y-0
-              ${isInCart ? "bg-green-500 text-white" : "bg-light text-dark hover:bg-accent"}`}
-            style={{ transitionDelay: "40ms" }}
+              ${
+                isInCart
+                  ? "bg-green-500/80 border-green-500/50 text-white"
+                  : "bg-dark/80 border-white/10 text-white hover:bg-accent hover:border-accent hover:text-dark"
+              }`}
           >
             {isInCart || justAdded ? (
-              <Check size={15} />
+              <Check size={14} />
             ) : (
-              <ShoppingCart size={15} />
+              <ShoppingCart size={14} />
             )}
           </button>
         </div>

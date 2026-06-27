@@ -8,19 +8,13 @@ import {
   ShoppingBag,
   ArrowRight,
   Lock,
-  Heart,
 } from "lucide-react";
 import useCartStore from "../store/cartStore";
-import useWishlistStore from "../store/wishlistStore";
 
 const Cart = () => {
   const cartItems = useCartStore((state) => state.items);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
-
-  const addToWishlist = useWishlistStore((state) => state.addItem);
-  const removeFromWishlist = useWishlistStore((state) => state.removeItem);
-  const isInWishlist = useWishlistStore((state) => state.isInWishlist);
 
   const pageRef = useRef(null);
   const headerRef = useRef(null);
@@ -72,33 +66,6 @@ const Cart = () => {
         removeItem(id, color);
       },
     });
-  };
-
-  // ✅ Only toggles wishlist, does NOT remove from cart
-  const handleWishlistToggle = (item) => {
-    const inWishlist = isInWishlist(item.id);
-
-    if (inWishlist) {
-      removeFromWishlist(item.id);
-    } else {
-      const wishlistItem = {
-        id: item.id,
-        name: item.name,
-        brand: item.brand,
-        price: item.price,
-        oldPrice: item.oldPrice,
-        image: item.image,
-        category: item.category,
-        rating: item.rating || 4.5,
-        reviews: item.reviews || 0,
-        stock: item.stock || 10,
-        colors: [item.color],
-        isNew: item.isNew || false,
-        discount: item.discount || 0,
-        description: item.description || "",
-      };
-      addToWishlist(wishlistItem);
-    }
   };
 
   // Calculations
@@ -174,8 +141,6 @@ const Cart = () => {
             {/* LEFT: Cart Items */}
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map((item) => {
-                const itemInWishlist = isInWishlist(item.id);
-
                 return (
                   <div
                     key={`${item.id}-${item.color}`}
@@ -297,28 +262,6 @@ const Cart = () => {
 
                           {/* Actions - Desktop */}
                           <div className="hidden sm:flex items-center gap-2">
-                            {/* ✅ Heart toggles wishlist only, stays in cart */}
-                            <button
-                              onClick={() => handleWishlistToggle(item)}
-                              className={`w-9 h-9 rounded-xl bg-dark-300
-                                border flex items-center justify-center
-                                transition-all duration-300 hover:scale-110 active:scale-95
-                                ${
-                                  itemInWishlist
-                                    ? "border-red-500/50 text-red-400 hover:border-red-500/70"
-                                    : "border-dark-400 text-primary-400 hover:text-accent hover:border-accent/50"
-                                }`}
-                              title={
-                                itemInWishlist
-                                  ? "Remove from Wishlist"
-                                  : "Add to Wishlist"
-                              }
-                            >
-                              <Heart
-                                size={15}
-                                className={itemInWishlist ? "fill-red-400" : ""}
-                              />
-                            </button>
                             <button
                               onClick={() =>
                                 handleRemoveItem(item.id, item.color)
@@ -336,24 +279,6 @@ const Cart = () => {
 
                         {/* Actions - Mobile */}
                         <div className="flex sm:hidden items-center gap-2 pt-2 border-t border-dark-400">
-                          {/* ✅ Heart toggles wishlist only, stays in cart */}
-                          <button
-                            onClick={() => handleWishlistToggle(item)}
-                            className={`flex-1 flex items-center justify-center gap-2
-                              bg-dark-300 border py-2 rounded-xl text-xs font-semibold
-                              transition-all duration-300 active:scale-95
-                              ${
-                                itemInWishlist
-                                  ? "border-red-500/50 text-red-400"
-                                  : "border-dark-400 text-primary-400 hover:text-accent hover:border-accent/50"
-                              }`}
-                          >
-                            <Heart
-                              size={13}
-                              className={itemInWishlist ? "fill-red-400" : ""}
-                            />
-                            {itemInWishlist ? "Wishlisted" : "Wishlist"}
-                          </button>
                           <button
                             onClick={() =>
                               handleRemoveItem(item.id, item.color)
