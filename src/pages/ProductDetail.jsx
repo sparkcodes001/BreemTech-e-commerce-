@@ -680,17 +680,17 @@ const ProductDetail = () => {
           <div>
             <h2
               className="font-display font-bold text-xl sm:text-2xl
-              lg:text-3xl text-light mb-5 sm:mb-6"
+      lg:text-3xl text-light mb-5 sm:mb-6"
             >
               Related{" "}
               <span
                 className="text-transparent bg-clip-text bg-gradient-to-r
-                from-accent to-light"
+        from-accent to-light"
               >
                 Products
               </span>
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-2 gap-5">
               {related.map((p, i) => (
                 <ProductCard key={p.id} product={p} index={i} />
               ))}
