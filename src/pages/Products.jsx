@@ -361,13 +361,12 @@ const Products = () => {
           <div className="flex-1 min-w-0">
             {filteredProducts.length > 0 ? (
               <div
-                className={`grid gap-4 sm:gap-5
-                  grid-cols-1 sm:grid-cols-2
-                  ${
-                    gridCols === 3
-                      ? "lg:grid-cols-3"
-                      : "lg:grid-cols-3 xl:grid-cols-4"
-                  }`}
+                className={`grid gap-3 sm:gap-4 lg:gap-5 grid-cols-2 sm:grid-cols-2
+                   ${
+                     gridCols === 3
+                       ? "lg:grid-cols-3"
+                       : "lg:grid-cols-3 xl:grid-cols-4"
+                   }`}
               >
                 {filteredProducts.map((product, i) => (
                   <ProductCard key={product.id} product={product} index={i} />
