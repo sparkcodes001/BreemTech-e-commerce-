@@ -44,6 +44,15 @@ export default {
         "gradient-dark": "linear-gradient(135deg, #080808 0%, #141414 100%)",
         "gradient-light": "linear-gradient(135deg, #f0f0f0 0%, #d1d1d1 100%)",
       },
+      animation: {
+        fadeIn: "fadeIn 0.2s ease-in",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
     },
   },
   plugins: [],
