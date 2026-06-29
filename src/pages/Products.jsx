@@ -13,11 +13,12 @@ import {
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ui/ProductCard";
 
+// ✅ FIX 1: isMobile as a function that returns a boolean
 const isMobile = () => window.innerWidth < 1024;
 
 const Products = () => {
   const [searchParams] = useSearchParams();
-  const { products, loading } = useProducts(); // ✅ From Supabase
+  const { products, loading } = useProducts();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || "all",
@@ -33,7 +34,6 @@ const Products = () => {
 
   const brands = ["all", ...new Set(products.map((p) => p.brand))];
 
-  // ... rest stays the same
   const categories = [
     { value: "all", label: "All Products", icon: "🔥" },
     { value: "mobile", label: "Smartphones", icon: "📱" },
@@ -76,7 +76,8 @@ const Products = () => {
 
   // ── GSAP entrance ──
   useEffect(() => {
-    if (isMobile) return;
+    // ✅ FIX 2: Call isMobile as a function with ()
+    if (isMobile()) return;
 
     gsap.fromTo(
       headerRef.current,
@@ -223,7 +224,8 @@ const Products = () => {
       </button>
     </div>
   );
-  
+
+  // ✅ FIX 3: Loading state shown before any conditional returns that depend on products
   if (loading) {
     return (
       <div className="min-h-screen bg-dark pt-20 flex items-center justify-center">
@@ -234,6 +236,7 @@ const Products = () => {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen bg-dark pt-20 sm:pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -352,7 +355,8 @@ const Products = () => {
                   <ProductCard
                     key={product.id}
                     product={product}
-                    index={isMobile ? 0 : i}
+                    // ✅ FIX 4: Call isMobile() as a function
+                    index={isMobile() ? 0 : i}
                   />
                 ))}
               </div>
@@ -374,7 +378,7 @@ const Products = () => {
         </div>
       </div>
 
-      {/* ── Mobile Filter Drawer ── */}
+      {/* ── Mobile Filter Drawer Backdrop ── */}
       {showFilters && (
         <div
           className="fixed inset-0 bg-dark/80 backdrop-blur-sm z-40 lg:hidden"
@@ -382,6 +386,7 @@ const Products = () => {
         />
       )}
 
+      {/* ── Mobile Filter Drawer ── */}
       <div
         ref={drawerRef}
         className="fixed bottom-0 left-0 right-0 z-50 lg:hidden

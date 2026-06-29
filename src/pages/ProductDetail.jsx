@@ -15,6 +15,7 @@ import {
   Minus,
   Plus,
   Share2,
+  Loader
 } from "lucide-react";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ui/ProductCard";
@@ -121,6 +122,14 @@ const ProductDetail = () => {
     setSelectedImage(i);
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-dark flex items-center justify-center">
+        <Loader size={40} className="text-accent animate-spin" />
+      </div>
+    );
+  }
+
   if (!product) {
     return (
       <div className="min-h-screen bg-dark flex items-center justify-center px-4">
@@ -161,13 +170,6 @@ const ProductDetail = () => {
     },
     { icon: <Zap size={18} />, title: "Fast Shipping", sub: "1-2 days" },
   ];
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-dark flex items-center justify-center">
-        <Loader size={40} className="text-accent animate-spin" />
-      </div>
-    );
-  }
   return (
     <div ref={pageRef} className="min-h-screen bg-dark pt-20 sm:pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

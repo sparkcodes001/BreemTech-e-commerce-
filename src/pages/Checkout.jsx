@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import useCartStore from "../store/cartStore";
 import { useOrders } from "../hooks/useOrders";
+
 // ─── Step Indicator ───────────────────────────────────────────────────────────
 const StepIndicator = ({ currentStep }) => {
   const steps = [
@@ -662,8 +663,6 @@ const Checkout = () => {
   const navigate = useNavigate();
   const cartItems = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
-
-  // ✅ Get addOrder from admin store
   const { addOrder } = useOrders();
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -775,14 +774,9 @@ const Checkout = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // ✅ Updated handlePlaceOrder
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
-
-    // Simulate payment processing
     await new Promise((res) => setTimeout(res, 2000));
-
-    // ✅ Send order to admin store
     addOrder({
       shippingData,
       paymentData,
@@ -790,8 +784,6 @@ const Checkout = () => {
       total,
       orderNumber,
     });
-
-    // Clear cart
     clearCart();
     setIsSuccess(true);
     setIsProcessing(false);
